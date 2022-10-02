@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LauncherController : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class LauncherController : MonoBehaviour
     [Header("LaunchButton")] 
     [SerializeField] private GameObject launchButton;
     [SerializeField] private LayerMask buttonMask;
-    
+    [SerializeField] private UnityEvent buttonAction;
+
     [Header("ChairLaunch")] 
     [SerializeField] private Transform chair;
     [SerializeField] private Transform front;
@@ -73,6 +75,10 @@ public class LauncherController : MonoBehaviour
         if (mouseDown)
         {
             if (!CheckClic(buttonMask)) return;
+            if (!buttonPressed)
+            {
+                buttonAction.Invoke();
+            }
             buttonPressed = true;
             launchButton.transform.localScale = new Vector3(1,1,0.5f);
         }

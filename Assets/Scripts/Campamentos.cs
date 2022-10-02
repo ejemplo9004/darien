@@ -19,7 +19,7 @@ public class Campamentos : MonoBehaviour
         inflable.SetActive(false);
         InstanciarInmigrante();
     }
-
+    [ContextMenu("Crear Inmigrante")]
     public void InstanciarInmigrante()
     {
         inmigrante = (Instantiate(prInmigrante, padreInmigrante) as GameObject).GetComponent<Inmigrante>();
@@ -31,5 +31,16 @@ public class Campamentos : MonoBehaviour
     {
         catapulta.SetActive(false);
         inflable.SetActive(true);
+    }
+
+    public void LanzarInmigrante()
+    {
+        inmigrante.AnimarLanzamiento();
+        Invoke("Desemparentar", 0.2f);
+    }
+    void Desemparentar()
+    {
+        inmigrante.gameObject.transform.SetParent(null);
+        inmigrante.ActivarFake();
     }
 }
