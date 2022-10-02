@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class Terrenizator : MonoBehaviour
 {
-    public MeshFilter malla;
-    public MeshCollider collider;
-    public float altura=3;
-    public float frecuencia;
-    public float offset;
-    public List<Vector3> vertices = new List<Vector3>();
-    public float minimo = 2;
-    public float agua = 0.5f;
-    public Transform campamento;
-    public float radioMenor;
-    public float radioMayor;
-    public AnimationCurve curvas;
+    public MeshFilter       malla;
+    public MeshCollider     collider;
+    public float            altura=3;
+    public float            frecuencia;
+    public float            offset;
+    public List<Vector3>    vertices = new List<Vector3>();
+    public float            minimo = 2;
+    public float            agua = 0.5f;
+    public Transform        campamento;
+    public float            radioMenor;
+    public float            radioMayor;
+    public AnimationCurve   curvas;
     [Header("...Arboles...")]
-    public GameObject prefabArbol;
+    public GameObject       prefabArbol;
     public List<GameObject> arboles = new List<GameObject>();
-    int arbolActual = 0;
-    public float frecuenciaArboles = 3;
-    public float cuadricula = 30;
-    public float rangoAparecer;
+    int                     arbolActual = 0;
+    public float            frecuenciaArboles = 3;
+    public float            cuadricula = 30;
+    public float            rangoAparecer;
     [Header("...Avances...")]
-    public float cuantoAvanzar;
+    public float            cuantoAvanzar;
 
     void Start()
     {

@@ -6,8 +6,8 @@ public class Inmigrante : MonoBehaviour
 {
     public GameObject[] cabezas;
     public GameObject[] cuerpos;
-    public Animator anim;
-    public Rigidbody[] rbs;
+    public Animator     anim;
+    public Rigidbody[]  rbs;
 
     void Start()
     {

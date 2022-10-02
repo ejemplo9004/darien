@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ControlGeneral : MonoBehaviour
 {
-    public int limiteFPS = 30;
-    public Terrenizator[] terrenos;
-    public int actual;
-    public Transform agua;
+    public int              limiteFPS = 30;
+    public Terrenizator[]   terrenos;
+    public int              actual;
+    public Transform        agua;
     public CamaraSeguirPivote camara;
 
     public void Siguiente()

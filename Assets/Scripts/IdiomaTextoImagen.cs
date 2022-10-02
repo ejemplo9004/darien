@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class IdiomaTextoImagen : MonoBehaviour
 {
-    public Image imInterfaz;
-    public Sprite sprIngles;
-    public Sprite sprEspañol;
-    public Text txtInterfaz;
-    public string textoIngles;
-    public string textoEspañol;
+    public Image    imInterfaz;
+    public Sprite   sprIngles;
+    public Sprite   sprEspañol;
+    public Text     txtInterfaz;
+    public string   textoIngles;
+    public string   textoEspañol;
      
     void Start()
     {
