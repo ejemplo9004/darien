@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SonidoTimon : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform timon;
+    public float velocidad;
     void Start()
     {
         
