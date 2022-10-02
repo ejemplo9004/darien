@@ -5,7 +5,7 @@ using UnityEngine;
 public class Arbol : MonoBehaviour
 {
     public GameObject[] arboles;
-     
+    public Vector3 posicion;
     public void Aleatorizar()
     {
         int c = Random.Range(0, arboles.Length);

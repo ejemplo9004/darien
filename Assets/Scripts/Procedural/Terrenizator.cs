@@ -81,8 +81,8 @@ public class Terrenizator : MonoBehaviour
         Vector3 npos = new Vector3(x, 0, y);
 
         Vector3 v = transform.position + npos;
-        float nx = offset + transform.position.x / 4 + (v.x + 10f) / 20f * frecuencia;
-        float ny = offset + transform.position.z / 4 + (-v.y + 10f) / 20f * frecuencia;
+        float nx = offset + transform.position.x / 4 + (v.x) / 20f * frecuencia;
+        float ny = offset + transform.position.z / 4 + (-v.y) / 20f * frecuencia;
         v.z = (Mathf.PerlinNoise(nx, ny)) * altura;
         float probabilidad = Mathf.PerlinNoise(x + frecuenciaArboles, y + frecuenciaArboles);
         v.z = v.z * (curvas.Evaluate((v.x + 20f) / 40f));
@@ -142,6 +142,7 @@ public class Terrenizator : MonoBehaviour
             GameObject go = Instantiate(prefabArbol, nv, Quaternion.identity, transform);
             arboles.Add(go);
             go.SendMessage("Aleatorizar");
+            go.GetComponent<Arbol>().posicion = posicion;
             arbolActual++;
         }
         else
@@ -149,6 +150,7 @@ public class Terrenizator : MonoBehaviour
             arboles[arbolActual].SetActive(true);
             arboles[arbolActual].SendMessage("Aleatorizar");
             arboles[arbolActual].transform.position = nv;
+            arboles[arbolActual].GetComponent<Arbol>().posicion = nv;
             arbolActual++;
         }
     }
