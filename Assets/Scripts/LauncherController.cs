@@ -51,6 +51,7 @@ public class LauncherController : MonoBehaviour
 
     private Camera _camera;
     private bool mouseUp, mouseDown, mouseHold;
+    private bool raycasted;
 
     private void Start()
     {
@@ -59,10 +60,11 @@ public class LauncherController : MonoBehaviour
 
     private void Update()
     {
+        raycasted = false;
         CheckMouse();
-        RotateWheel();
         MoveLever();
         MoveSlider();
+        RotateWheel();
         Launch();
     }
 
@@ -162,7 +164,7 @@ public class LauncherController : MonoBehaviour
 
         float fuerza = (slider.position - bottom.position).magnitude / sliderField.magnitude;
 
-        Debug.Log($"La fuerza de lanzamiento es: {fuerza}");
+        //Debug.Log($"La fuerza de lanzamiento es: {fuerza}");
     }
 
     private void MoveLever()
@@ -225,8 +227,12 @@ public class LauncherController : MonoBehaviour
                 angle = -angle;
             }
 
-            wheel.transform.Rotate(0, 0, -angle);
-            launcherBase.transform.Rotate(0, 0, -angle / speedRelation);
+            float actualAngle = launcherBase.transform.eulerAngles.y;
+            if (!((actualAngle < 120 && angle > 0) || (actualAngle > 240 && angle < 0)))
+            {
+                wheel.transform.Rotate(0, 0, -angle);
+                launcherBase.transform.Rotate(0, 0, -angle / speedRelation);
+            }
             startClic = relativeMousePosition;
         }
 
@@ -243,7 +249,11 @@ public class LauncherController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 10, mask))
         {
-            return true;
+            if (!raycasted)
+            {
+                raycasted = true;
+                return true;
+            }
         }
 
         return false;
