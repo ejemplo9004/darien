@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: -8620558928613749443
     second: Varios_0
+  - first:
+      213: -1072983835049486606
+    second: Varios_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -134,6 +137,27 @@ TextureImporter:
       bones: []
       spriteID: d3dc7aef35f9d5880800000000000000
       internalID: -8620558928613749443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Varios_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 106
+        width: 344
+        height: 396
+      alignment: 9
+      pivot: {x: 0.49548146, y: 0.4214979}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f6932e03eefb11f0800000000000000
+      internalID: -1072983835049486606
       vertices: []
       indices: 
       edges: []
