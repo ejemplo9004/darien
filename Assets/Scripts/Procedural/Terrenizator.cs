@@ -25,6 +25,12 @@ public class Terrenizator : MonoBehaviour
     public float            rangoAparecer;
     [Header("...Avances...")]
     public float            cuantoAvanzar;
+    public Campamentos      sCampamentos;
+
+    private void Awake()
+    {
+        sCampamentos = GetComponent<Campamentos>();
+    }
 
     void Start()
     {
@@ -162,5 +168,14 @@ public class Terrenizator : MonoBehaviour
             arboles[i].SetActive(false);
         }
         arbolActual = 0;
+    }
+
+    public void ActivarCampamento()
+    {
+        if(sCampamentos != null) sCampamentos.ActivarCampamento();
+    }
+    public void ActivarCatapulta()
+    {
+        if (sCampamentos != null) sCampamentos.ActivarCatapulta();
     }
 }

@@ -13,14 +13,18 @@ public class ControlGeneral : MonoBehaviour
     public void Siguiente()
     {
         terrenos[actual].Avanzar();
+        terrenos[actual].ActivarCampamento();
         actual = (actual + 1) % terrenos.Length;
         agua.Translate((terrenos[0].cuantoAvanzar / terrenos.Length) * Vector3.forward, Space.World);
         camara.objetivo = terrenos[actual].campamento;
+        terrenos[actual].ActivarCatapulta();
+
     }
     void Start()
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = limiteFPS;
+        terrenos[actual].ActivarCatapulta();
     }
 
 }
