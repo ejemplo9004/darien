@@ -9,7 +9,7 @@ public class Piso : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inmigrante inmi = other.gameObject.GetComponent<Inmigrante>();
-            print(inmi);
+            //print(inmi);
             if (inmi!=null)
             {
                 inmi.Morir();
