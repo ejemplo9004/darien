@@ -75,6 +75,7 @@ public class Inmigrante : MonoBehaviour
         ActivarRagdoll();
         enabled = false;
         vivo = false;
+        persona.EndAirTrip();
     }
 
     public void Morir(Vector3 _fuerza)

@@ -9,6 +9,7 @@ public class LauncherController : MonoBehaviour
     [SerializeField] private GameObject launcherBase;
     [SerializeField] private float speedRelation;
     [SerializeField] private GameObject launcher;
+    [SerializeField] private ThrowPredictor predictor;
 
     [Header("Wheel")] 
     [SerializeField] private GameObject wheel;
@@ -56,13 +57,17 @@ public class LauncherController : MonoBehaviour
     private bool mouseUp, mouseDown, mouseHold;
     private bool raycasted;
 
-    private void Start()
+    private IEnumerator Start()
     {
         _camera = Camera.main;
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(predictor.DrawLine());
     }
 
     private void Update()
     {
+        predictor.UpdateParameters(front.position,
+            force * forceMultiplier * ControlGeneral.singleton.GetInmigrante().transform.forward, new Vector3(0, -9.8f, 0));
         raycasted = false;
         CheckMouse();
         MoveLever();
@@ -108,6 +113,10 @@ public class LauncherController : MonoBehaviour
         }
 
         chair.position = front.position;
+        ControlGeneral.singleton.GetCampamento().Desemparentar();
+        ThrowablePerson person = ControlGeneral.singleton.GetInmigrante().persona;
+        person.StartAirTrip(force * forceMultiplier * person.transform.forward, Vector3.zero);
+        predictor.StopDrawing(true);
         yield return new WaitForSeconds(1);
 
         timePassed = 0;

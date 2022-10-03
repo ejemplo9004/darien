@@ -1360,6 +1360,7 @@ MonoBehaviour:
   partiSangre: {fileID: 8951088996942667002, guid: 318f049047bf43f448ee605b6516108d, type: 3}
   camara: {fileID: 5703752051679367340}
   delayCamara: 2
+  persona: {fileID: 1595931373411058365}
 --- !u!135 &1044110682251436558
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1403,8 +1404,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.8
   aceleration: {x: 0, y: 0, z: 0}
-  groundChecker: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!1 &4109454114567192826
 GameObject:
   m_ObjectHideFlags: 0

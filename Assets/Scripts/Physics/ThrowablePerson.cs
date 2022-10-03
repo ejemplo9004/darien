@@ -9,22 +9,20 @@ public class ThrowablePerson : MonoBehaviour
     private Vector3 initVelocity;
     [SerializeField] private Vector3 aceleration;
     private float time;
-    [SerializeField] private GroundChecker groundChecker;
-    [SerializeField] private Rigidbody rb;
 
     private void Update()
     {
         if (isInAir)
         {
-            Vector3 currentVelocity = GetCurrentVelocity();
-            float yVel = currentVelocity.y;
-            if (groundChecker.CheckGround() && yVel < 0)
-            {
-                rb.isKinematic = false;
-                rb.velocity = currentVelocity;
-                EndAirTrip();
-                return;
-            }
+            //Vector3 currentVelocity = GetCurrentVelocity();
+            //float yVel = currentVelocity.y;
+            // if (groundChecker.CheckGround() && yVel < 0)
+            // {
+            //     rb.isKinematic = false;
+            //     rb.velocity = currentVelocity;
+            //     EndAirTrip();
+            //     return;
+            // }
             CalculateNextPosition();
         }
     }
@@ -55,7 +53,7 @@ public class ThrowablePerson : MonoBehaviour
         return new Vector3(xAxis, yAxis, zAxis);
     }
 
-    private void EndAirTrip()
+    public void EndAirTrip()
     {
         isInAir = false;
     }

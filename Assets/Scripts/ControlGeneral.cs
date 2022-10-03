@@ -51,4 +51,9 @@ public class ControlGeneral : MonoBehaviour
         return terrenos[actual].sCampamentos.inmigrante;
     }
 
+    public Campamentos GetCampamento()
+    {
+        return terrenos[actual].sCampamentos;
+    }
+
 }
