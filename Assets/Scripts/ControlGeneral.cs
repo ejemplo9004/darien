@@ -10,6 +10,20 @@ public class ControlGeneral : MonoBehaviour
     public Transform        agua;
     public CamaraSeguirPivote camara;
 
+    public static ControlGeneral singleton;
+
+    private void Awake()
+    {
+        if (singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
+
     public void Siguiente()
     {
         terrenos[actual].Avanzar();
@@ -30,6 +44,11 @@ public class ControlGeneral : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = limiteFPS;
         terrenos[actual].ActivarCatapulta();
+    }
+
+    public Inmigrante GetInmigrante()
+    {
+        return terrenos[actual].sCampamentos.inmigrante;
     }
 
 }
