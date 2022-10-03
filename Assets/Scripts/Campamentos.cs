@@ -41,6 +41,6 @@ public class Campamentos : MonoBehaviour
     void Desemparentar()
     {
         inmigrante.gameObject.transform.SetParent(null);
-        inmigrante.ActivarFake();
+        //inmigrante.persona.
     }
 }

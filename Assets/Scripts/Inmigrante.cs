@@ -12,6 +12,7 @@ public class Inmigrante : MonoBehaviour
     public GameObject   partiSangre;
     public GameObject   camara;
     public float        delayCamara;
+    public ThrowablePerson persona;
 
     bool vivo = true;
     Vector3 fuerza = Vector3.zero;
@@ -45,7 +46,7 @@ public class Inmigrante : MonoBehaviour
         camara.SetActive(que);
     }
 
-    [ContextMenu("Muñeco de trapo")]
+    [ContextMenu("Muï¿½eco de trapo")]
     public void ActivarRagdoll()
     {
         rbPpal.isKinematic = false;
@@ -80,21 +81,5 @@ public class Inmigrante : MonoBehaviour
     {
         fuerza = _fuerza;
         Morir();
-    }
-
-    public void ActivarFake()
-    {
-        StartCoroutine(FakeAvanzar());
-    }
-
-    IEnumerator FakeAvanzar()
-    {
-        float gravedad = -2;
-        while (vivo)
-        {
-            transform.Translate((Vector3.forward * 2 + Vector3.down * gravedad) * Time.deltaTime);
-            gravedad += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
     }
 }

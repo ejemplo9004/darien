@@ -36,6 +36,7 @@ public class LauncherController : MonoBehaviour
     private bool sliderMoving;
     private float sliderDistance;
     private Vector3 startpos;
+    public float force;
 
     [Header("LaunchButton")] 
     [SerializeField] private GameObject launchButton;
@@ -168,9 +169,8 @@ public class LauncherController : MonoBehaviour
             sliderMoving = false;
         }
 
-        float fuerza = (slider.position - bottom.position).magnitude / sliderField.magnitude;
+        force = (slider.position - bottom.position).magnitude / sliderField.magnitude;
 
-        //Debug.Log($"La fuerza de lanzamiento es: {fuerza}");
     }
 
     private void MoveLever()
