@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Inflable : MonoBehaviour
 {
+    public AudioSource audio;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            /// Victoria
+            Inmigrante inmi = other.gameObject.GetComponent<Inmigrante>();
+            if (inmi != null)
+            {
+                Destroy(other.gameObject);
+                ControlGeneral.singleton.Siguiente();
+            }
         }
     }
 }
