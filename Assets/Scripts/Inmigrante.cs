@@ -44,6 +44,14 @@ public class Inmigrante : MonoBehaviour
     {
         yield return new WaitForSeconds(cuanto);
         camara.SetActive(que);
+        if (que)
+        {
+            Time.timeScale = 0.8f;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     [ContextMenu("Mu�eco de trapo")]
@@ -76,6 +84,13 @@ public class Inmigrante : MonoBehaviour
         enabled = false;
         vivo = false;
         persona.EndAirTrip();
+        Time.timeScale = 1;
+        Invoke("ReCrearInmigrante", 5);
+    }
+
+    public void ReCrearInmigrante()
+    {
+        ControlGeneral.singleton.InstanciarInmigrante();
     }
 
     public void Morir(Vector3 _fuerza)
