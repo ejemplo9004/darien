@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Piso : MonoBehaviour
 {
+    public bool aplicarFuerzaChoque = true;
+    public AudioSource audio;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -12,7 +14,11 @@ public class Piso : MonoBehaviour
             //print(inmi);
             if (inmi!=null)
             {
-                inmi.Morir();
+                inmi.Morir(aplicarFuerzaChoque? (inmi.transform.position - transform.position).normalized:Vector3.zero);
+                if (audio != null)
+                {
+                    audio.Play();
+                }
             }
         }
     }

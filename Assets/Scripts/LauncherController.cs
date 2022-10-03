@@ -16,7 +16,7 @@ public class LauncherController : MonoBehaviour
     [SerializeField] private LayerMask wheelLayer;
     private Vector3 startClic;
     private Vector3 relativeMousePosition;
-    private float angle;
+    public float angle;
     private bool wheelMoving;
 
     [Header("HeightLever")] 
