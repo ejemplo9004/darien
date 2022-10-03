@@ -14,6 +14,7 @@ public class Inmigrante : MonoBehaviour
     public float        delayCamara;
 
     bool vivo = true;
+    Vector3 fuerza = Vector3.zero;
     void Start()
     {
         if (!vivo) return;
@@ -53,6 +54,7 @@ public class Inmigrante : MonoBehaviour
         {
             rbs[i].velocity = Vector3.zero;
         }
+        rbPpal.AddForce(fuerza * 5000);
         anim.enabled = false;
         StartCoroutine(CambioCamara(false, 5));
     }
@@ -72,6 +74,12 @@ public class Inmigrante : MonoBehaviour
         ActivarRagdoll();
         enabled = false;
         vivo = false;
+    }
+
+    public void Morir(Vector3 _fuerza)
+    {
+        fuerza = _fuerza;
+        Morir();
     }
 
     public void ActivarFake()
