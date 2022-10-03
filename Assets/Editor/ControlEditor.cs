@@ -11,5 +11,9 @@ public class ControlEditor : Editor
         {
             ((ControlGeneral)target).Siguiente();
         }
+        if (GUILayout.Button("Nuevo Inmigrante"))
+        {
+            ((ControlGeneral)target).InstanciarInmigrante();
+        }
     }
 }

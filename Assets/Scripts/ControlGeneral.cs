@@ -20,6 +20,11 @@ public class ControlGeneral : MonoBehaviour
         terrenos[actual].ActivarCatapulta();
 
     }
+
+    public void InstanciarInmigrante()
+    {
+        terrenos[actual].GetComponent<Campamentos>().InstanciarInmigrante();
+    }
     void Start()
     {
         QualitySettings.vSyncCount = 0;
