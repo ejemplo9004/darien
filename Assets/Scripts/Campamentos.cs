@@ -17,6 +17,9 @@ public class Campamentos : MonoBehaviour
     public void ActivarCatapulta()
     {
         catapulta.SetActive(true);
+        LauncherController launcher = catapulta.GetComponent<LauncherController>();
+        launcher.RandomizePositions();
+        launcher.UpdateCounter(ControlGeneral.singleton.inmigrantesRestantes + 1);
         inflable.SetActive(false);
         InstanciarInmigrante();
     }

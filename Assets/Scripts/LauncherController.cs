@@ -5,11 +5,16 @@ using UnityEngine.Events;
 
 public class LauncherController : MonoBehaviour
 {
+    #region References
+
     [Header("Launcher")] 
     [SerializeField] private GameObject launcherBase;
     [SerializeField] private float speedRelation;
     [SerializeField] private GameObject launcher;
     [SerializeField] private ThrowPredictor predictor;
+
+    [Header("InmigrantsCounter")] 
+    [SerializeField] private List<GameObject> inmigrants;
 
     [Header("Wheel")] 
     [SerializeField] private GameObject wheel;
@@ -24,6 +29,7 @@ public class LauncherController : MonoBehaviour
     [SerializeField] private Transform lever;
     [SerializeField] private LayerMask leverLayer;
     [SerializeField] private float heightMultiplier = 1;
+    [SerializeField] private float leverSensivity = 1;
     private float startRotation = 0;
     private bool leverMoving;
     private float leverDistance;
@@ -57,6 +63,7 @@ public class LauncherController : MonoBehaviour
     private bool mouseUp, mouseDown, mouseHold;
     private bool raycasted;
 
+    #endregion
     private IEnumerator Start()
     {
         _camera = Camera.main;
@@ -81,10 +88,6 @@ public class LauncherController : MonoBehaviour
         if (mouseDown)
         {
             if (!CheckClic(buttonMask)) return;
-            if (!buttonPressed)
-            {
-                buttonAction.Invoke();
-            }
             buttonPressed = true;
             launchButton.transform.localScale = new Vector3(1,1,0.5f);
         }
@@ -96,6 +99,7 @@ public class LauncherController : MonoBehaviour
             if (!CheckClic(buttonMask)) return;
             if (!moveLock)
             {
+                buttonAction.Invoke();
                 StartCoroutine(ExecuteLaunch());
             }
         }
@@ -199,7 +203,7 @@ public class LauncherController : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             leverPos = _camera.WorldToScreenPoint(lever.position);
             relativeMousePosition = mousePos - leverPos;
-            leverDistance = relativeMousePosition.y - startClic.y;
+            leverDistance = (relativeMousePosition.y - startClic.y) * leverSensivity;
             startRotation += leverDistance;
             startClic = relativeMousePosition;
             if (startRotation < 0 || startRotation > 80)
@@ -272,5 +276,34 @@ public class LauncherController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void RandomizePositions()
+    {
+        //Slider
+        Vector3 sliderField = top.position - bottom.position;
+        float rnd = Random.Range(0f, 1f);
+        slider.position = Vector3.MoveTowards(bottom.position, top.position, sliderField.magnitude * rnd);
+        
+        //Lever
+        lever.localRotation = new Quaternion(0.4f, 0f, 0f, 0.9f);
+        startRotation = Random.Range(0f, 80f);
+        launcher.transform.localRotation = Quaternion.identity;
+        lever.Rotate(-startRotation, 0, 0);
+        launcher.transform.Rotate(startRotation * heightMultiplier, 0, 0);
+        
+        //Wheel
+        float rangle = Random.Range(0, 100);
+        launcherBase.transform.localRotation = new Quaternion(0f, 0f, 0f, 1f);
+        launcherBase.transform.Rotate(0, 0, rangle-60);
+    }
+
+    public void UpdateCounter(int n)
+    {
+        foreach (var inmigrant in inmigrants)
+        {
+            inmigrant.SetActive(n > 0);
+            n--;
+        }
     }
 }
