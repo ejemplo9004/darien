@@ -1183,6 +1183,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   heightMultiplier: 0.8
+  leverSensivity: 0.4
   slider: {fileID: 2891778590386360837}
   top: {fileID: 3295901728233937017}
   bottom: {fileID: 3295901729021275859}
@@ -1215,7 +1216,7 @@ MonoBehaviour:
   front: {fileID: 3295901727541206958}
   back: {fileID: 3295901728913667940}
   launchTime: 0.05
-  backTime: 5
+  backTime: 1
 --- !u!114 &1837541717648338857
 MonoBehaviour:
   m_ObjectHideFlags: 0

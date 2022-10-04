@@ -9,6 +9,7 @@ public class ControlGeneral : MonoBehaviour
     public int              actual;
     public Transform        agua;
     public CamaraSeguirPivote camara;
+    public int inmigrantesRestantes;
 
     public static ControlGeneral singleton;
 
@@ -37,7 +38,16 @@ public class ControlGeneral : MonoBehaviour
 
     public void InstanciarInmigrante()
     {
-        terrenos[actual].GetComponent<Campamentos>().InstanciarInmigrante();
+        if (inmigrantesRestantes > 0)
+        {
+            inmigrantesRestantes--;
+            GetCampamento().InstanciarInmigrante();
+        }
+        else
+        {
+            Debug.Log("Yaper");
+        }
+        
     }
     void Start()
     {
