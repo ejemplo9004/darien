@@ -302,7 +302,6 @@ public class LauncherController : MonoBehaviour
     {
         foreach (var inmigrant in inmigrants)
         {
-            Debug.Log($"Desactivando Inmigrante {n}");
             inmigrant.SetActive(n > 0);
             n--;
         }

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlGeneral : MonoBehaviour
 {
@@ -9,7 +11,8 @@ public class ControlGeneral : MonoBehaviour
     public int              actual;
     public Transform        agua;
     public CamaraSeguirPivote camara;
-    public int inmigrantesRestantes;
+    public int maxInmigrantes;
+    [HideInInspector] public int inmigrantesRestantes;
 
     public static ControlGeneral singleton;
 
@@ -41,11 +44,14 @@ public class ControlGeneral : MonoBehaviour
         if (inmigrantesRestantes > 0)
         {
             inmigrantesRestantes--;
-            GetCampamento().InstanciarInmigrante();
+            Campamentos camp = GetCampamento();
+            camp.InstanciarInmigrante();
+            camp.catapulta.GetComponent<LauncherController>().UpdateCounter(inmigrantesRestantes + 1);
+            
         }
         else
         {
-            Debug.Log("Yaper");
+            SceneManager.LoadScene("End");
         }
         
     }
@@ -54,6 +60,7 @@ public class ControlGeneral : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = limiteFPS;
         terrenos[actual].ActivarCatapulta();
+        inmigrantesRestantes = maxInmigrantes - 1;
     }
 
     public Inmigrante GetInmigrante()
